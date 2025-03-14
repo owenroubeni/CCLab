@@ -63,7 +63,7 @@ let shrink = false;
 
 function setup() {
   createCanvas(800, 500);
-
+// hello
   gd1x = random(width); //x
   gd1y = random(height); // y
   gd1size = random(4, 9); //size
