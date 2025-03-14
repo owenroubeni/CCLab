@@ -62,8 +62,13 @@ let s = 1;
 let shrink = false;
 
 function setup() {
-  createCanvas(800, 500);
+  // createCanvas(800, 500);
 // hello
+
+let canvas = createCanvas(800, 500);
+   canvas.id("p5-canvas");
+   canvas.parent("p5-canvas-container");
+
   gd1x = random(width); //x
   gd1y = random(height); // y
   gd1size = random(4, 9); //size
