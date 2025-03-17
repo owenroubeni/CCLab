@@ -1,9 +1,10 @@
-/*
-Template for IMA's Creative Coding Lab 
+// Make control console longer and button colors interactive
 
-Project A: Generative Creatures
-CCLaboratories Biodiversity Atlas 
-*/
+// Make the jellyfish color change when clicking on trash
+
+// Add noise to either jellyfish movement when in lightmode or the jellyfish body
+
+// Add more decoration
 
 let gd1x, gd1y, gd1size, gd1green; // glowing dot 1 data
 
@@ -54,6 +55,8 @@ let jellyY = 250;
 let speed = 2;
 let pulse = 0;
 let pulseDirection = 1;
+let jellyfishGr;
+let jellyfishColor;
 
 // Light On Variables
 let lightON = false;
@@ -61,13 +64,19 @@ let s = 1;
 
 let shrink = false;
 
-function setup() {
-  // createCanvas(800, 500);
-// hello
+//trash interaction
+let trashColor = false;
+let scaredTrash = false;
+let disableCenter = false;
 
-let canvas = createCanvas(800, 500);
-   canvas.id("p5-canvas");
-   canvas.parent("p5-canvas-container");
+function setup() {
+  let canvas = createCanvas(800, 500);
+  canvas.id("p5-canvas");
+  canvas.parent("p5-canvas-container");
+
+
+  jellyfishGr = random(100, 255);
+  //255, 100, 200
 
   gd1x = random(width); //x
   gd1y = random(height); // y
@@ -168,11 +177,6 @@ let canvas = createCanvas(800, 500);
   gd20y = random(height); // y
   gd20size = random(4, 9); //size
   gd20green = random(100, 255);
-
-  // Button Variable
-  let button = createButton("Light");
-  button.position(32, 438);
-  button.mousePressed(repaint);
 }
 
 function draw() {
@@ -183,6 +187,10 @@ function draw() {
   } else {
     darkMode();
   }
+
+  // Set Jellyfish
+  moveJellyfish();
+  drawJellyfish(jellyX, jellyY, pulse);
 
   // Submarine Border
   noStroke();
@@ -200,11 +208,11 @@ function draw() {
 
   // Control Console
   fill(110, 110, 110);
-  rect(300, 400, 200, 100, 10);
+  rect(100, 400, 600, 100, 10);
 
   // Console Buttons (GRID)
   for (let y = 410; y < 500; y += 20) {
-    for (let x = 310; x < 500; x += 20) {
+    for (let x = 110; x < 700; x += 20) {
       fill(0);
       circle(x, y, 10);
     }
@@ -222,19 +230,79 @@ function draw() {
   spoonTrash(600, 298, 0.09);
 
   canwrapTrash(465, 191, 0.06);
+
+  push();
+
+  noStroke();
+  fill(255);
+  textAlign(CENTER);
+  textSize(20);
+  textStyle(BOLD);
+  text("Light", 55, 454);
+
+  pop();
+}
+
+function mousePressed() {
+  if (mouseX > 25 && mouseX < 85 && mouseY > 425 && mouseY < 475) {
+    if (buttonColor == "red") {
+      buttonColor = "green";
+      repaint();
+    } else if (buttonColor == "green") {
+      buttonColor = "red";
+      repaint();
+    }
+  }
+
+  if (
+    mouseX > 161 &&
+    mouseX < 105 + 10 + 161 &&
+    mouseY > 150 &&
+    mouseY < 150 + 40
+  ) {
+    trashColor = true;
+
+    jellyfishColor = color(173, 216, 230);
+    scaredTrash = true;
+  } else if (mouseX > 290 && mouseX < 325 && mouseY > 325 && mouseY < 375) {
+    trashColor = true;
+
+    jellyfishColor = color("red");
+    scaredTrash = true;
+  } else if (mouseX > 590 && mouseX < 635 && mouseY > 290 && mouseY < 325) {
+    trashColor = true;
+
+    jellyfishColor = color(255);
+    scaredTrash = true;
+  } else if (
+    mouseX > 465 &&
+    mouseX < 465 + 75 &&
+    mouseY > 191 &&
+    mouseY < 236
+  ) {
+    trashColor = true;
+
+    jellyfishColor = color(50);
+    scaredTrash = true;
+  }
 }
 
 function repaint() {
   lightON = !lightON;
+
+  trashColor = false;
+  scaredTrash = false;
 }
 
 function lightMode() {
   fill(70, 130, 180);
   rect(100, 100, 600, 300);
 
-  drawJellyfish(jellyX, jellyY, pulse);
-  moveJellyfish();
-  jellyfishColor()
+  // jellyfishColor = color(255, 100, 200);
+
+  if (trashColor == false) {
+    jellyfishColor = color(255, 100, 200);
+  }
 }
 
 function darkMode() {
@@ -301,15 +369,26 @@ function darkMode() {
   fill(0, gd20green, 200, 150);
   circle(gd20x, gd20y, gd20size);
 
-  // Set Jellyfish
-  moveJellyfish();
-  drawJellyfish(jellyX, jellyY, pulse);
-  jellyfishColor()
+  //Jellyfish Color
+  let sinValue = sin(frameCount * 0.01);
+  jellyfishGr = map(sinValue, -1, 1, 100, 200);
+  jellyfishColor = color(0, jellyfishGr, 200);
 }
 
 function moveJellyfish() {
-  if (jellyX < 400) {
+  if (jellyX < 400 && disableCenter == false) {
     jellyX += speed * 0.5;
+  }
+
+  if (scaredTrash == true) {
+    let sinValueX = noise(frameCount * 0.03);
+    let mapNumX = map(sinValueX, 0, 1, 180, 600);
+    jellyX = mapNumX;
+
+    let sinValueY = noise(frameCount * 0.02 - 15);
+    let mapNumY = map(sinValueY, 0, 1, 100, 400);
+    jellyY = mapNumY;
+    disableCenter = true;
   }
 
   // Pulse Motion
@@ -323,15 +402,16 @@ function drawJellyfish(x, y, pulse) {
   push();
   translate(x, y);
 
-  // Glow
-  fill(255, 100, 200);
+  // Jellyfish Color
+  fill(jellyfishColor);
+  // fill(255, 100, 200);
   noStroke();
 
   // Body
   if (lightON == true) {
     s = s - 0.003;
-    if (s < 0.1) {
-      s = 0.1; // Stop Point
+    if (s < 0.2) {
+      s = 0.2; // Stop Point
     }
     scale(s);
     shrink = true;
@@ -344,9 +424,10 @@ function drawJellyfish(x, y, pulse) {
   }
 
   ellipse(0, 0, 82 + pulse, 60 + pulse);
-  
+
   // Tentacles
-  stroke(255, 100, 200);
+  // stroke(255, 100, 200);
+  stroke(jellyfishColor);
   strokeWeight(3);
   // for (i = -30; i <= 30; i += 15) {
   //   line(i, 10, i + random(-5, 5), 75);}
@@ -426,7 +507,7 @@ function canwrapTrash(x, y, freq) {
 
     // Can Plastic Wrap
     noFill();
-    stroke(50, 50, 50);
+    stroke(50);
     strokeWeight(2);
 
     circle(x, new_y, 30);
@@ -437,9 +518,3 @@ function canwrapTrash(x, y, freq) {
     circle(x + 60, new_y + 30, 30);
   }
 }
-
-function jellyfishColor(){
-  
-}
-
-
