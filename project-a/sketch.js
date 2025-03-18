@@ -76,105 +76,104 @@ function setup() {
 
 
   jellyfishGr = random(100, 255);
-  //255, 100, 200
 
-  gd1x = random(width); //x
-  gd1y = random(height); // y
+  gd1x = random(100, 700); //x
+  gd1y = random(100, 400); // y
   gd1size = random(4, 9); //size
   gd1green = random(100, 255);
 
-  gd2x = random(width); //x
-  gd2y = random(height); // y
+  gd2x = random(100, 700); //x
+  gd2y = random(100, 400); // y
   gd2size = random(4, 9); //size
   gd2green = random(100, 255);
 
-  gd3x = random(width); //x
-  gd3y = random(height); // y
+  gd3x = random(100, 700); //x
+  gd3y = random(100, 400); // y
   gd3size = random(4, 9); //size
   gd3green = random(100, 255);
 
-  gd4x = random(width); //x
-  gd4y = random(height); // y
+  gd4x = random(100, 700); //x
+  gd4y = random(100, 400); // y
   gd4size = random(4, 9); //size
   gd4green = random(100, 255);
 
-  gd5x = random(width); //x
-  gd5y = random(height); // y
+  gd5x = random(100, 700); //x
+  gd5y = random(100, 400); // y
   gd5size = random(4, 9); //size
   gd5green = random(100, 255);
 
-  gd6x = random(width); //x
-  gd6y = random(height); // y
+  gd6x = random(100, 700); //x
+  gd6y = random(100, 400); // y
   gd6size = random(4, 9); //size
   gd6green = random(100, 255);
 
-  gd7x = random(width); //x
-  gd7y = random(height); // y
+  gd7x = random(100, 700); //x
+  gd7y = random(100, 400); // y
   gd7size = random(4, 9); //size
   gd7green = random(100, 255);
 
-  gd8x = random(width); //x
-  gd8y = random(height); // y
+  gd8x = random(100, 700); //x
+  gd8y = random(100, 400); // y
   gd8size = random(4, 9); //size
   gd8green = random(100, 255);
 
-  gd9x = random(width); //x
-  gd9y = random(height); // y
+  gd9x = random(100, 700); //x
+  gd9y = random(100, 400); // y
   gd9size = random(4, 9); //size
   gd9green = random(100, 255);
 
-  gd10x = random(width); //x
-  gd10y = random(height); // y
+  gd10x = random(100, 700); //x
+  gd10y = random(100, 400); // y
   gd10size = random(4, 9); //size
   gd10green = random(100, 255);
 
-  gd11x = random(width); //x
-  gd11y = random(height); // y
+  gd11x = random(100, 700); //x
+  gd11y = random(100, 400); // y
   gd11size = random(4, 9); //size
   gd11green = random(100, 255);
 
-  gd12x = random(width); //x
-  gd12y = random(height); // y
+  gd12x = random(100, 700); //x
+  gd12y = random(100, 400); // y
   gd12size = random(4, 9); //size
   gd12green = random(100, 255);
 
-  gd13x = random(width); //x
-  gd13y = random(height); // y
+  gd13x = random(100, 700); //x
+  gd13y = random(100, 400); // y
   gd13size = random(4, 9); //size
   gd13green = random(100, 255);
 
-  gd14x = random(width); //x
-  gd14y = random(height); // y
+  gd14x = random(100, 700); //x
+  gd14y = random(100, 400); // y
   gd14size = random(4, 9); //size
   gd14green = random(100, 255);
 
-  gd15x = random(width); //x
-  gd15y = random(height); // y
+  gd15x = random(100, 700); //x
+  gd15y = random(100, 400); // y
   gd15size = random(4, 9); //size
   gd15green = random(100, 255);
 
-  gd16x = random(width); //x
-  gd16y = random(height); // y
+  gd16x = random(100, 700); //x
+  gd16y = random(100, 400); // y
   gd16size = random(4, 9); //size
   gd16green = random(100, 255);
 
-  gd17x = random(width); //x
-  gd17y = random(height); // y
+  gd17x = random(100, 700); //x
+  gd17y = random(100, 400); // y
   gd17size = random(4, 9); //size
   gd17green = random(100, 255);
 
-  gd18x = random(width); //x
-  gd18y = random(height); // y
+  gd18x = random(100, 700); //x
+  gd18y = random(100, 400); // y
   gd18size = random(4, 9); //size
   gd18green = random(100, 255);
 
-  gd19x = random(width); //x
-  gd19y = random(height); // y
+  gd19x = random(100, 700); //x
+  gd19y = random(100, 400); // y
   gd19size = random(4, 9); //size
   gd19green = random(100, 255);
 
-  gd20x = random(width); //x
-  gd20y = random(height); // y
+  gd20x = random(100, 700); //x
+  gd20y = random(100, 400); // y
   gd20size = random(4, 9); //size
   gd20green = random(100, 255);
 }
@@ -200,12 +199,62 @@ function draw() {
   rect(700, 0, 100, height);
   rect(0, 400, width, 100);
 
-  // Pipes
-  fill(62, 39, 35);
-  rect(45, 0, 20, 430); // Left
-  rect(758, 70, 20, 400); // Right
-  rect(150, 49, 500, 20); // Top
+  // Blue Research Books
+  fill(43, 26, 14);
+  rect(710, 190, 800, 8);
 
+  fill(65, 105, 225);
+  rect(720, 150, 17, 40);
+
+  fill(0, 0, 128);
+  rect(737, 140, 21, 50);
+
+  fill(70, 130, 180);
+  rect(778, 145, 22, 45);
+  fill(50, 50, 50);
+  rect(780, 150, 17, 10);
+
+  // Red Research Books
+  fill(43, 26, 14);
+  rect(710, 260, 800, 8);
+
+  fill(178, 0, 24);
+  rect(720, 220, 17, 40);
+
+  fill(128, 0, 32);
+  rect(737, 210, 21, 50);
+
+  fill(220, 20, 60);
+  rect(778, 215, 22, 45);
+  fill(50, 50, 50);
+  rect(780, 220, 17, 10);
+  
+  // Purple Research Books
+  fill(43, 26, 14);
+  rect(710, 330, 800, 8);
+
+  fill(142, 69, 133);
+  rect(720, 290, 17, 40);
+
+  fill(76, 0, 153);
+  rect(737, 280, 21, 50);
+
+  fill(136, 77, 167);
+  rect(778, 285, 22, 45);
+  fill(50, 50, 50);
+  rect(780, 290, 17, 10);
+
+  // Pipes
+  fill(110, 110, 110);
+  rect(45, 0, 20, 430); // Left
+  rect(758, 60, 20, 450); // Right
+  rect(45, 49, 758, 20); // Top
+  rect(0, 330, 45, 15);
+rect(0, 130, 45, 15)
+  rect(0, 198, 45, 15)
+  rect(0, 265, 45, 15)
+  
+  
   // Control Console
   fill(110, 110, 110);
   rect(100, 400, 600, 100, 10);
@@ -242,6 +291,7 @@ function draw() {
 
   pop();
 }
+
 
 function mousePressed() {
   if (mouseX > 25 && mouseX < 85 && mouseY > 425 && mouseY < 475) {
