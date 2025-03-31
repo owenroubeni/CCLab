@@ -119,7 +119,6 @@ class OwenDancer {
     noStroke()
     rect(38, -40, 48, 10)
 
-    // Top of the fedora
     fill(50) 
     rect(42, -45, 37, 10)
 
