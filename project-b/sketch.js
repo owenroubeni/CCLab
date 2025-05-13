@@ -217,8 +217,6 @@ function phase1() {
     }
   }
 
-  console.log(worldX + box.x)
-
   // box hit
   if ((worldX + box.x) <= 217 && (worldX + box.x) >= 180) {
     if (mario.marioY <= mario.marioMax + 20) {
